@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Login2Xplore</title>
+
+    <script src="http://login2explore.com/jpdb/resources/js/0.0.4/jpdb-commons.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</head>
+
+<body onload="onr()">
+    <div class="container">
+        <h3 class="display-3 d-flex justify-content-center">Employee Form</h3>
+        <hr>
+        <form method="post">
+            <div class="mb-3">
+                <label for="eID" class="form-label">Employee ID:</label>
+                <input type="text" class="form-control" id="eID" onkeyup="getEmp()">
+            </div>
+            <div class="mb-3">
+                <label for="eName" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="eName">
+            </div>
+            <div class="mb-3">
+                <label for="eSalary" class="form-label">Salary:</label>
+                <input type="number" class="form-control" id="eSalary">
+            </div>
+            <div class="mb-3">
+                <label for="eHRA" class="form-label">HRA:</label>
+                <input type="number" class="form-control" id="eHRA">
+            </div>
+            <div class="mb-3">
+                <label for="eDA" class="form-label">DA:</label>
+                <input type="number" class="form-control" id="eDA">
+            </div>
+            <div class="mb-3">
+                <label for="eDeduct" class="form-label">Deduction:</label>
+                <input type="number" class="form-control" id="eDeduct">
+            </div>
+
+            <div class="text-center">
+                <input class="btn btn-primary fb" type="submit" value="Submit" id="submit" onclick="submitData()">
+                <input class="btn btn-primary fb" type="button" value="Update" id="update" onclick="updateData()">
+                <input class="btn btn-primary fb" type="reset" value="Reset" id="reset" onclick="resetForm()">
+                <input class="btn btn-primary fb" type="button" value="New" id="new" onclick="newForm()">
+                <input class="btn btn-primary fb" type="button" value="Edit" id="edit" onclick="editForm()">
+            </div>
+            <br>
+            <div class="text-center">
+                <input class="btn btn-primary nb" type="button" value="First" id="first" onclick="firstRec()">
+                <input class="btn btn-primary nb" type="button" value="Previous" id="previous" onclick="prevRec()">
+                <input class="btn btn-primary nb" type="button" value="Next" id="next" onclick="nextRec()">
+                <input class="btn btn-primary nb" type="button" value="Last" id="last" onclick="lastRec()">
+            </div>
+        </form>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+
+</html>
