@@ -1,7 +1,8 @@
-var connToken = "90938682|-31949294602845254|90942631";
+var connToken = "";
 var baseURL = "http://api.login2explore.com:5577";
 var db = "Employee";
 var response;
+var rel = "form";
 
 function execute(req, endpoint) {
     jQuery.ajaxSetup({ async: false });
@@ -76,7 +77,7 @@ function setFirstRec(response) {
 }
 
 function firstRec() {
-    var getFirst = createFIRST_RECORDRequest(connToken, db, "form");
+    var getFirst = createFIRST_RECORDRequest(connToken, db, rel);
     var response = execute(getFirst, "/api/irl");
     fillData(response);
     setFirstRec(response);
@@ -102,7 +103,7 @@ function setLastRec(response) {
 }
 
 function lastRec() {
-    var getLast = createLAST_RECORDRequest(connToken, db, "form");
+    var getLast = createLAST_RECORDRequest(connToken, db, rel);
     var response = execute(getLast, "/api/irl");
     setLastRec(response);
     fillData(response);
@@ -151,7 +152,7 @@ function prevRec() {
         $("#first").prop("disabled", true);
     }
 
-    var prevReq = createPREV_RECORDRequest(connToken, db, "form", record);
+    var prevReq = createPREV_RECORDRequest(connToken, db, rel, record);
     var response = execute(prevReq, "/api/irl");
     fillData(response);
     jQuery.ajaxSetup({ async: true });
@@ -165,7 +166,7 @@ function prevRec() {
 
 function nextRec() {
     var record = localStorage.getItem('rec_no');
-    var nextReq = createNEXT_RECORDRequest(connToken, db, "form", record);
+    var nextReq = createNEXT_RECORDRequest(connToken, db, rel, record);
     var response = execute(nextReq, "/api/irl");
     $("#submit").prop("disabled", true);
     fillData(response);
@@ -175,7 +176,7 @@ function nextRec() {
 function resetForm() {
     document.querySelectorAll(".fb").forEach(e => e.disabled = true);
     document.querySelectorAll(".nb").forEach(e => e.disabled = false);
-    var getReq = createGET_BY_RECORDRequest(connToken, db, "form", getCurrRec());
+    var getReq = createGET_BY_RECORDRequest(connToken, db, rel, getCurrRec());
     var response = execute(getReq, "/api/irl");
     fillData(response);
     jQuery.ajaxSetup({ async: true });
@@ -235,7 +236,7 @@ function getEmp() {
         var jsonStr = { eID: empId };
         jsonObjStr = JSON.stringify(jsonStr);
 
-        var getReq = createGET_BY_KEYRequest(connToken, db, "form", jsonObjStr);
+        var getReq = createGET_BY_KEYRequest(connToken, db, rel, jsonObjStr);
         var response = execute(getReq, "/api/irl");
         document.getElementById('reset').disabled = false;
 
@@ -257,7 +258,7 @@ function getEmp() {
 
 function submitData() {
     var jsonStr = validateData();
-    var putReq = createPUTRequest(connToken, jsonStr, db, "form");
+    var putReq = createPUTRequest(connToken, jsonStr, db, rel);
     var response = execute(putReq, "/api/iml");
     if (noRec()) {
         setFirstRec(response);
@@ -270,7 +271,7 @@ function submitData() {
 
 function updateData() {
     var jsonStr = validateData();
-    var updateReq = createUPDATERecordRequest(connToken, jsonStr, db, "form", getCurrRec());
+    var updateReq = createUPDATERecordRequest(connToken, jsonStr, db, rel, getCurrRec());
     var response = execute(updateReq, "/api/iml");
     // console.log("updatedata response " + response.status);
     resetForm();
